@@ -1,0 +1,14 @@
+在镜像网络模式下，你不需要去找 Windows 的局域网 IP。既然网络是共享的，你直接让 WSL 访问本机的 127.0.0.1 就可以了。
+
+请在终端中执行以下命令重新覆盖环境变量：
+
+Bash
+export hostip="127.0.0.1"
+export https_proxy="http://${hostip}:7890"
+export http_proxy="http://${hostip}:7890"
+设置完毕后，再次使用 curl 进行终极测试：
+
+Bash
+curl -v https://www.google.com
+小提示：在镜像网络模式下，Clash 的“允许局域网”其实开不开都已经无所谓了，因为 WSL 现在对 Clash 来说已经是“本地人”（Localhost）了。 快换成 127.0.0.1 再试一次，这次大概率能直接看到 200 OK 的成功响应。
+127.0.0.1是本地回环地址

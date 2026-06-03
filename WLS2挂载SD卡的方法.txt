@@ -1,0 +1,47 @@
+PS C:\Users\lzy20> usbipd list
+Connected:
+BUSID  VID:PID    DEVICE                                                        STATE
+1-6    04f2:b7b4  Integrated Camera, Integrated IR Camera, Camera DFU Device    Not shared
+1-10   8087:0026  英特尔(R) 无线 Bluetooth(R)                                        Not shared
+4-1    413c:301a  USB 输入设备                                                      Not shared
+4-2    14cd:1212  USB 大容量存储设备                                                   Shared
+4-3    c251:f001  USB 输入设备                                                      Not shared
+4-4    067b:2303  Prolific USB-to-Serial Comm Port (COM5)                       Not shared
+6-1    258a:002a  USB 输入设备                                                      Not shared
+6-2    067b:2303  Prolific USB-to-Serial Comm Port (COM6)                       Not shared
+6-3    1a86:7523  USB-SERIAL CH340 (COM3)                                       Not shared
+6-4    0483:3748  STM32 STLink                                                  Not shared
+
+Persisted:
+GUID                                  DEVICE
+
+PS C:\Users\lzy20>PS C:\Users\lzy20> usbipd attach --wsl --busid 4-2
+usbipd: info: Using WSL distribution 'Ubuntu-22.04' to attach; the device will be available in all WSL 2 distributions.
+usbipd: info: Loading vhci_hcd module.
+usbipd: info: Detected networking mode 'mirrored'.
+usbipd: info: Using IP address 127.0.0.1 to reach the host.
+PS C:\Users\lzy20>
+
+
+---------------------------------------------------------------------------------
+14cd:1212  USB 大容量存储设备                                                   Shared
+找这个
+---------------------------------------------------------------------------------
+
+root@LAPTOP-3490A3LQ:~/嵌入式Linux学习/MX6ULL/l_leds# lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda      8:0    0 364.8M  1 disk
+sdb      8:16   0 144.5M  1 disk
+sdc      8:32   0     2G  0 disk [SWAP]
+sdd      8:48   0     1T  0 disk /mnt/wslg/distro
+                                 /
+sde      8:64   1   7.3G  0 disk
+└─sde1   8:65   1   7.3G  0 part
+
+烧写成功！现在：
+
+  1. 在WSL中安全卸载SD卡：
+  sudo sync
+
+  2. 在Windows PowerShell中断开USB连接：
+  usbipd detach --busid 6-3
