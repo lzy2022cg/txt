@@ -1,0 +1,21 @@
+用 reportlab 原生的 Table 表格来绘制pdf，用来制作表格用
+
+  生成 PDF 的字体规则（必须遵守）：
+
+  1. 只用 /usr/share/fonts/windows/msyh.ttc（注册为 YH）和 msyhbd.ttc（注册为 YHB），加载时必须写 subfontIndex=0
+  2. 不要用 msyhl.ttc（YHL/雅黑 Light）——它的 index 0 没有中文字形，含中文的地方会变方块
+  3. 不要用 DejaVuMono、SimFang 或任何其他字体——它们都不能同时覆盖中文和 Unicode 符号
+  4. 代码框、注释、标题、正文全部只用 YH 或 YHB，不要为了视觉层次引入第三种字体
+  5. 不要用 ASCII 制表符（┌─┐│└┘）画图——改用 Table 单元格拼布局
+  6. 输出路径写 /mnt/c/Users/lzy20/Downloads/（对应 Windows 的 C:\Users\lzy20\Downloads\）
+  7. 所有段落样式一律用 TA_LEFT，禁止用 TA_JUSTIFY——ReportLab 对中英混排做两端对齐时会把词间距强行拉伸，造成字符间大量空白；tip_box/info_box 等提示框的文本换行必须用 <br/> 而非 \n，否则单元格高度计算错误导致后续内容重叠
+  8. 必须生成 PDF 书签导航：在脚本中定义零高度 Flowable Bookmark 类，在每个章节/小节标题前插入，使 PDF 阅读器左侧书签栏可点击跳转。章标题用 level=0（默认展开），节标题用 level=1（closed=True 默认折叠），key 在全文唯一。实现如下：
+  class Bookmark(Flowable):
+      def __init__(self, title, key, level=0):
+          super().__init__()
+          self.title = title; self.key = key; self.level = level
+          self.width = self.height = 0
+      def draw(self):
+          self.canv.bookmarkPage(self.key)
+          self.canv.addOutlineEntry(self.title, self.key,
+                                    level=self.level, closed=(self.level > 0))

@@ -1,0 +1,6 @@
+PowerShell 回车即可
+第一条：
+  Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideIcons' -Value 0
+第二条：
+  Stop-Process -Name explorer -Force
+第二条执行后 Explorer 会重启，桌面图标就回来了。

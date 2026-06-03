@@ -1,0 +1,14 @@
+在当前工程目录下
+帮我配置 clangd（VS Code 的 C/C++ 智能提示引擎），让这个工程支持 VS Code 智能提示
+请生成 compile_commands.json、.clangd、.vscode/settings.json
+
+3 个文件已重新创建完毕，在 VS Code 中按 Ctrl+Shift+P → clangd: Restart language server 即可生效。
+
+.clangd 和 settings.json 是一次性配置，除非换了芯片架构或工具链，否则永远不用动。
+compile_commands.json可以通过bear -- make 命令实时更新
+
+/********************************************************************************************/
+故只要芯片架构和工具链不变，可以在相同的环境下用同一个.clangd、.vscode/settings.json
+然后再用bear -- make生成compile_commands.json
+最后在 VS Code 中按 Ctrl+Shift+P → clangd: Restart language server 即可生效。
+/********************************************************************************************/
