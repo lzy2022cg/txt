@@ -1,0 +1,5 @@
+正点原子阿尔法Linux开发板
+/etc/rc.local 第 17 行是 /opt/QDesktop >/dev/null 2>&1 &
+运行了桌面程序需要注释掉
+
+grep -rsln psplash /etc/会列出开发板LCD运行显示正点原子log的脚本chmod -x /etc/init.d/psplash.sh可以选择chmod -x /etc/init.d/psplash.sh去掉可执行权限
