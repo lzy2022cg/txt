@@ -35,7 +35,17 @@ root@ATK-IMX6U:~#   cat /sys/class/graphics/fb0/stride 2>/dev/null
 
  vsftpd 默认禁止 root 登录，所以一开始报 530 Permission denied。我们把 /etc/vsftpd.user_list 里的 root 删掉，root 就能登录了。
 
+  ls ~/dtb/*.dtb
 
+  imx6ull-14x14-emmc-4.3-480x272-c.dtb    ← 4.3寸 480x272 电容屏
+  imx6ull-14x14-emmc-4.3-800x480-c.dtb    ← 4.3寸 800x480 电容屏
+  imx6ull-14x14-emmc-7-800x480-c.dtb      ← 7寸 800x480 电容屏
+  imx6ull-14x14-emmc-7-1024x600-c.dtb     ← 7寸 1024x600 电容屏 ✅ 你用的
+  imx6ull-14x14-emmc-10.1-1280x800-c.dtb  ← 10.1寸 1280x800 电容屏
+  imx6ull-14x14-emmc-hdmi.dtb             ← HDMI 输出
+  imx6ull-14x14-emmc-vga.dtb              ← VGA 输出
+
+  命名规则：imx6ull-14x14-emmc-{屏幕尺寸}-{分辨率}-{c=电容触摸}.dtb
 
 
 
