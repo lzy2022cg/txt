@@ -28,11 +28,6 @@ PS C:\Users\lzy20>
 找这个
 ---------------------------------------------------------------------------------
 
-| 类型                     | 示例        |
-| ---------------------- | --------- |
-| Character Device（字符设备） | 键盘、串口     |
-| Block Device（块设备）      | 硬盘、SSD、U盘 |
-
 root@LAPTOP-3490A3LQ:~/嵌入式Linux学习/MX6ULL/l_leds# lsblk
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 sda      8:0    0 364.8M  1 disk
